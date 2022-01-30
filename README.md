@@ -8,12 +8,13 @@ This is not meant to be a "full-blown" Android project, but rather, a showcase o
 - Broadcast Receiver
 - Preference saving/storage
 - Multi-threading
+- Basic UI design
 
-![screenshot](https://i.imgur.com/4ugReG7.png)
+![screenshot](https://i.imgur.com/QfBUUCJ.png)
 
 ### Future work
 
 Some potential improvement ideas:
 - Polish the UI
-- On the Android emulator, only one battery change event is broadcast, but on real phones, multiple events are brodcast. There could be an option to let the user choose if they only want one anouncment
+- There could be an option to let the user choose if they only want one anouncment
 - It might be possible/useful to fire the app when the charger is plugged in

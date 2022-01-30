@@ -8,6 +8,10 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -30,31 +34,17 @@ public class MainActivity extends AppCompatActivity {
 
         TextView percent_label = findViewById(R.id.percent_label);
         percent_label.setText(""+this.percent+"%");
+        getSupportActionBar().hide();
 
-
-        SeekBar desired_max = findViewById(R.id.desired_max);
-        desired_max.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        thunder = findViewById(R.id.thunder_svg);
+        set_thunder(percent-10);
+        thunder.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // https://stackoverflow.com/questions/7329166/changing-step-values-in-seekbar
-                progress = progress / 1;
-                progress = progress * 10;
-                if(progress%10==0) {
-                    set_max(progress);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public boolean onTouch(View v, MotionEvent event) {
+                set_thunder(percent);
+                return false;
             }
         });
-        desired_max.setProgress(percent/10);
 
         executorService = Executors.newFixedThreadPool(2);
         }
@@ -84,4 +74,55 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         receiver.stop_tts();
     }
+
+    private void set_thunder(int percent) {
+        switch(percent) {
+            case 0:
+                thunder.setImageResource(R.drawable.ic_view_10);
+                set_max(percent+10);
+                break;
+            case 10:
+                thunder.setImageResource(R.drawable.ic_view_20);
+                set_max(percent+10);
+                break;
+            case 20:
+                thunder.setImageResource(R.drawable.ic_view_30);
+                set_max(percent+10);
+                break;
+            case 30:
+                thunder.setImageResource(R.drawable.ic_view_40);
+                set_max(percent+10);
+                break;
+            case 40:
+                thunder.setImageResource(R.drawable.ic_view_50);
+                set_max(percent+10);
+                break;
+            case 50:
+                thunder.setImageResource(R.drawable.ic_view_60);
+                set_max(percent+10);
+                break;
+            case 60:
+                thunder.setImageResource(R.drawable.ic_view_70);
+                set_max(percent+10);
+                break;
+            case 70:
+                thunder.setImageResource(R.drawable.ic_view_80);
+                set_max(percent+10);
+                break;
+            case 80:
+                thunder.setImageResource(R.drawable.ic_view_90);
+                set_max(percent+10);
+                break;
+            case 90:
+                thunder.setImageResource(R.drawable.ic_view_100);
+                set_max(percent+10);
+                break;
+            default:
+                thunder.setImageResource(R.drawable.ic_view_0);
+                set_max(0);
+
+        }
+    }
+
+    private ImageView thunder;
 }
